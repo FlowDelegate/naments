@@ -1,6 +1,6 @@
 {
   "name": "@flowdelegate/naments",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Themed name arrays for agents, bots, and fixtures. Pass a category, get fun names.",
   "type": "module",
   "main": "./dist/index.cjs",
