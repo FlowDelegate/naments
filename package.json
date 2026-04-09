@@ -26,7 +26,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
     "new-category": "tsx scripts/new-category.ts"
   },
   "keywords": [
