@@ -1,5 +1,5 @@
 import * as readline from 'readline';
-import { writeFileSync, readFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -16,6 +16,12 @@ async function main() {
   }
 
   const jsonPath = join(__dirname, '..', 'src', 'categories', `${slug}.json`);
+
+  if (existsSync(jsonPath)) {
+    console.error(`Category "${slug}" already exists at ${jsonPath}`);
+    process.exit(1);
+  }
+
   writeFileSync(jsonPath, '[\n  \n]\n');
   console.log(`\nCreated ${jsonPath}`);
 

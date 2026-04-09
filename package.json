@@ -48,6 +48,9 @@
     "url": "https://github.com/FlowDelegate/naments/issues"
   },
   "homepage": "https://github.com/FlowDelegate/naments#readme",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",

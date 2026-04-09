@@ -58,6 +58,22 @@ describe('getNames', () => {
     expect(getNames('christmas', 0)).toEqual([]);
   });
 
+  it('returns empty array for negative count', () => {
+    expect(getNames('christmas', -1)).toEqual([]);
+    expect(getNames('christmas', -100)).toEqual([]);
+  });
+
+  it('returns empty array for NaN and non-finite count', () => {
+    expect(getNames('christmas', NaN)).toEqual([]);
+    expect(getNames('christmas', Infinity)).toEqual([]);
+    expect(getNames('christmas', -Infinity)).toEqual([]);
+  });
+
+  it('handles fractional count by truncating via slice', () => {
+    const names = getNames('christmas', 2.9);
+    expect(names.length).toBe(2);
+  });
+
   it('throws for unknown category', () => {
     expect(() => getNames('dinosaurs')).toThrow('Unknown category "dinosaurs"');
     expect(() => getNames('dinosaurs')).toThrow('Available:');

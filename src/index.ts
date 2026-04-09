@@ -5,18 +5,18 @@ export function getCategories(): string[] {
 }
 
 export function hasCategory(category: string): boolean {
-  return category in registry;
+  return Object.hasOwn(registry, category);
 }
 
 export function getNames(category: string, count?: number): string[] {
-  const names = registry[category];
-  if (!names) {
+  if (!Object.hasOwn(registry, category)) {
     throw new Error(
       `Unknown category "${category}". Available: ${getCategories().join(', ')}`
     );
   }
+  const names = registry[category];
   if (count === undefined) return [...names];
-  if (count <= 0) return [];
+  if (!Number.isFinite(count) || count <= 0) return [];
 
   const shuffled = [...names];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -27,11 +27,11 @@ export function getNames(category: string, count?: number): string[] {
 }
 
 export function getName(category: string): string {
-  const names = registry[category];
-  if (!names) {
+  if (!Object.hasOwn(registry, category)) {
     throw new Error(
       `Unknown category "${category}". Available: ${getCategories().join(', ')}`
     );
   }
+  const names = registry[category];
   return names[Math.floor(Math.random() * names.length)];
 }
